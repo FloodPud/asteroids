@@ -106,11 +106,13 @@ def log_state():
         "screen_size": screen_size,
         **game_state,
     }
-
-    # New log file on each run
-    mode = "w" if not _state_log_initialized else "a"
-    with open("game_state.jsonl", mode) as f:
-        f.write(json.dumps(entry) + "\n")
+    try:
+        # New log file on each run
+        mode = "w" if not _state_log_initialized else "a"
+        with open("game_state.jsonl", mode) as f:
+            f.write(json.dumps(entry) + "\n")
+    except Exception:
+        pass
 
     _state_log_initialized = True
 
@@ -127,9 +129,11 @@ def log_event(event_type, **details):
         "type": event_type,
         **details,
     }
-
-    mode = "w" if not _event_log_initialized else "a"
-    with open("game_events.jsonl", mode) as f:
-        f.write(json.dumps(event) + "\n")
+    try:
+        mode = "w" if not _event_log_initialized else "a"
+        with open("game_events.jsonl", mode) as f:
+            f.write(json.dumps(event) + "\n")
+    except Exception:
+        pass
 
     _event_log_initialized = True
