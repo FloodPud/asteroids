@@ -2,7 +2,6 @@ import asyncio
 import pygame
 import sys
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
-from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -27,19 +26,19 @@ async def main():
     asteroid_field = AsteroidField()
     Shot.containers = (updatable, drawable, shots)
     while True:
-        log_state()
+        #log_state()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         updatable.update(dt)
         for asteroid in asteroids:
             if player.collides_with(asteroid):
-                log_event("player_hit")
+                #log_event("player_hit")
                 print("Game over!")
-                sys.exit(0)
+                return
             for shot in shots:
                 if shot.collides_with(asteroid):
-                    log_event("asteroid_shot")
+                    #log_event("asteroid_shot")
                     asteroid.split()
                     shot.kill()
         screen.fill("black")

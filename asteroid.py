@@ -1,7 +1,6 @@
 
 from circleshape import CircleShape
 from constants import ASTEROID_MIN_RADIUS, ASTEROID_MAX_RADIUS, ASTEROID_KINDS
-from logger import log_event
 import pygame
 import random
 class Asteroid(CircleShape):
@@ -21,7 +20,7 @@ class Asteroid(CircleShape):
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
-        log_event("asteroid_split")
+        #log_event("asteroid_split")
         new_angle = random.uniform(20,50)
         new_radius = self.radius - ASTEROID_MIN_RADIUS
         asteroid1 = Asteroid(self.position.x, self.position.y, new_radius)
