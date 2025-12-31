@@ -1,3 +1,4 @@
+import asyncio
 import pygame, sys
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from logger import log_state, log_event
@@ -44,7 +45,8 @@ def main():
         for item in drawable:
             item.draw(screen)
         pygame.display.flip()
+        await asyncio.sleep(0)
         dt = clock.tick(60) / 1000.0
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
